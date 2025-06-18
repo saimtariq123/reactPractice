@@ -1,35 +1,49 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import appwriteAuth from './appwrite/auth'
+import { login, logout } from './reduxStore/authSlice'
+import Header from './components/header'
+import Footer from './components/Footer'
+
+
+
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [loading, setLoading] = useState(true)
+  const dispatch = useDispatch()
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+  useEffect(() => {
+    appwriteAuth.getCurrentUser()
+      .then((userData) => {
+        if (userData) {
+          dispatch(login({ userData }))
+        } else {
+          dispatch(logout())
+        }
+      })
+      .catch((error) => {
+        console.error('Error fetching current user:', error)
+        dispatch(logout())
+      })
+      .finally(() => setLoading(false))
+  }, [])
+
+  return !loading ? (
+
+    <div className="App text-center mt-5 block mx-auto w-1/2 ">
+      <h1>Welcome to Mega Blog</h1>
+      <Header/>
+      <main>
+      todo
+      </main>
+      <Footer/>
+       
+     
+    </div>
+  ) : null
+  
 }
 
 export default App
+// Note: The above code assumes that you have set up Redux and the AuthService correctly.
