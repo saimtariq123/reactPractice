@@ -2,6 +2,9 @@ import React from 'react'
 import {Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import Container from './Container'
+import Logo from './Logo'
+import LogoutBtn from './LogoutBtn'
 
 const header = () => {
   const auth= useSelector((state) => state.auth.state)

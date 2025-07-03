@@ -4,6 +4,7 @@ import appwriteAuth from './appwrite/auth'
 import { login, logout } from './reduxStore/authSlice'
 import Header from './components/header'
 import Footer from './components/Footer'
+import Login from './components/Login'
 
 
 
@@ -33,6 +34,7 @@ function App() {
 
     <div className="App text-center mt-5 block mx-auto w-1/2 ">
       <h1>Welcome to Mega Blog</h1>
+      <Login/>
       <Header/>
       <main>
       todo
