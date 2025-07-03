@@ -4,29 +4,29 @@ import { FaFacebookSquare, FaInstagramSquare, FaLinkedin } from 'react-icons/fa'
 const Card = ({ image, name, role }) => {
   return (
     <div className="  border border-gray-300 rounded shadow-[12px_12px_24px_0px_rgba(0,0,0,0.12)] bg-white overflow-hidden group relative">
-      <div className="relative w-full h-[290px] ">
+      <div className="relative w-full  ">
         <img
           src={image}
           alt={name}
-          className="w-full h-full object-cover group-hover:brightness-75 transition duration-300"
+          className="sm:w-full sm:h-full h-[210px] object-cover group-hover:brightness-75 transition duration-300"
         />
         <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 flex flex-col gap-2 transition-opacity duration-300">
           {[FaInstagramSquare, FaFacebookSquare, FaLinkedin].map((Icon, i) => (
             <div
               key={i}
-              className="w-[35px] h-[35px] bg-white rounded-full flex items-center justify-center hover:bg-black transition-colors duration-300"
+              className=" bg-white rounded-full flex items-center justify-center hover:bg-black transition-colors duration-300"
             >
-              <Icon className="text-[17px] text-black hover:text-white transition-colors duration-300" />
+              <Icon className="h-[30px] w-[30px] bg-black text-[17px] text-white hover:text-white transition-colors duration-300" />
             </div>
           ))}
         </div>
       </div>
 
       <div className="group-hover:bg-black bg-white transition-colors duration-500 px-4 py-2 text-center h-full">
-        <p className="font-medium text-[16px] leading-[23px]  text-black group-hover:text-white transition duration-500">
+        <p className="font-medium sm:text-[16px] text-[14px] leading-[23px]  text-black group-hover:text-white transition duration-500">
           {name}
         </p>
-        <p className="font-normal text-[16px] leading-[23px] text-gray-700 group-hover:text-white transition duration-500">
+        <p className="font-normal sm:text-[16px] text-[14px] leading-[23px] text-gray-700 group-hover:text-white transition duration-500">
           {role}
         </p>
       </div>

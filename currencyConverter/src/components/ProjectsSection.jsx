@@ -18,19 +18,19 @@ const ProjectsSection = () => {
   const displayedImages = showAll ? [...images, ...images] : images
 
   return (
-    <section className="w-full bg-black text-white h-auto py-[100px] xl:px-[calc((100%-90rem)/2+1.5rem)] px-6">
-      <div className="w-full max-w-[80%] mx-auto">
+    <section className="w-full bg-black text-white h-auto sm:py-[100px] py-[50px]  px-6">
+      <div className=" sm:w-[80%] w-[95%] m-auto">
         {/* Header */}
         <div className="flex items-center mb-4 sm:mb-6">
           <hr className="w-10 border-orange-500 border-2 mr-3" />
           <h2 className="text-xl sm:text-2xl font-semibold text-orange-500">Projects</h2>
         </div>
 
-        <h3 className="text-[22px] sm:text-[28px] font-medium leading-[100%] mb-4 sm:mb-6">
+        <h3 className="text-[18px] sm:text-[28px] font-medium leading-[100%] mb-4 sm:mb-6">
           Take a closer look at our <span className="text-orange-500">impeccable craftsmanship</span> and attention to <span className="text-orange-500">detail</span> in every project we deliver
         </h3>
 
-        <p className="text-[14px] sm:text-[16px] font-light leading-[100%] text-white mb-10">
+        <p className="text-[12px] sm:text-[16px] font-light leading-[100%] text-white mb-10">
           Lorem ipsum dolor sit amet consectetur. Pellentesque proin pretium amet id duis. Urna scelerisque. Pellentesque proin pretium amet id duis. Urna scelerisque.
         </p>
 

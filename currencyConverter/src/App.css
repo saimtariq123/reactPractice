@@ -1,42 +1,101 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+@media (max-width: 640px) {
+  .back-image {
+    justify-content: center;
+    padding-right: 100px;
+    width: 270px;
+    height: 330px;
+    left: 120px;
   }
-  to {
-    transform: rotate(360deg);
+
+  .front-image {
+    width: 180px;
+    height: 180px;
+    top: 180px;
+    left: 20px;
+    
+  }
+  .logo{
+  width: 150px;
+  height: 40px;
+}
+.back-img-2{
+  width: 240px;
+  
+}
+.front-img-2{
+  width: 240px;
+  top: 90px;
+  
+}
+}
+
+@media (min-width: 641px) and (max-width: 768px) {
+  .back-image {
+    width: 338px;
+    height: 504px;
+    left: 170px;
+  }
+
+  .front-image {
+    width: 326px;
+    height: 326px;
+    top: 280px;
+    left: 0;
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+@media (min-width: 769px) {
+  
+
+  .front-image {
+    width: 380px;
+    height: 380px;
+    top: 250px;
+    left: 0;
   }
 }
 
-.card {
-  padding: 2em;
+
+/* Heading Style */
+.heading-orange {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #F97316; /* Tailwind orange-500 equivalent */
 }
 
-.read-the-docs {
-  color: #888;
+/* Content Style */
+.content-black {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500;
+  font-size: 28px;
+  color: #000000;
 }
+
+/* Paragraph Style */
+.para {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-transform: capitalize;
+  color:  #141414;
+
+  
+}
+/* globals.css or tailwind.css */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+  
+
+

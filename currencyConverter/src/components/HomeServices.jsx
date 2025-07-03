@@ -35,18 +35,18 @@ const HomeServicesSection = () => {
 
   return (
     <section className="w-full bg-black text-white py-[60px] sm:py-[100px]">
-      <div className=" xl:px-[calc((100%-72rem)/2+1.5rem)] mx-auto flex flex-col md:flex-row justify-between items-start gap-12 lg:gap-16">
+      <div className=" w-[90%] sm:w-[80%] mx-auto flex flex-col md:flex-row justify-between items-start gap-12 lg:gap-16">
         {/* Left Section */}
-        <div className="w-full md:w-1/2">
+        <div className="w-full ">
           <div className="flex items-center mb-4 sm:mb-6">
             <hr className="w-8 sm:w-10 border-orange-500 border-2 mr-3" />
             <h2 className="text-xl sm:text-2xl font-semibold text-orange-500">Services</h2>
           </div>
-          <h3 className="text-[22px] sm:text-[28px] font-medium leading-[100%] mb-4 sm:mb-6">
+          <h3 className="text-[20px] sm:text-[28px] font-medium leading-[100%] mb-4 sm:mb-6">
             Exceptional <span className="text-orange-500">construction services</span> and expert{' '}
             <span className="text-orange-500">insights</span>, from start to finish.
           </h3>
-          <p className="text-[14px] sm:text-[16px] font-light leading-[100%] text-white mb-6 sm:mb-8">
+          <p className="text-[13px] sm:text-[16px] font-light  leading-[130%] text-white mb-6 sm:mb-8">
             Lorem ipsum dolor sit amet consectetur. Pellen tesque proin pretium amet id duis. Urna
             scelerisque. Pellentesque proin pretium amet id duis. Urna scelerisque.
           </p>
@@ -56,7 +56,7 @@ const HomeServicesSection = () => {
         </div>
 
         {/* Right Section with Cards */}
-        <div className="w-full md:w-1/2 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+        <div className="w-full  grid grid-cols-2 sm:grid-cols-2 gap-4 sm:gap-6">
           {cards.map((card, idx) => (
             <CardForServices
               key={idx}
