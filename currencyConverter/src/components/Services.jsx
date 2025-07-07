@@ -53,7 +53,7 @@ const Services = () => {
     <div className="w-full font-sans">
       {/* Banner */}
       <section className="relative">
-        <figure className="relative w-full h-[370px]">
+        <figure className="relative w-full sm:h-[370px] h-[270px]">
           <img
             src="/Banner-Seviices-.png"
             alt="Services Banner"

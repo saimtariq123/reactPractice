@@ -28,16 +28,16 @@ const ContactUs = () => {
       </section>
 
       {/* Content Section */}
-      <section className=" px-4 sm:px-8  w-[80%] md:w-[] lg:w-[] xl:w- mx-auto py-8 sm:py-12 flex flex-col items-start">
+      <section className=" px-4 sm:px-8  sm:w-[80%] w-[90%] md:w-[] lg:w-[] xl:w- mx-auto py-8 sm:py-12 flex flex-col items-start">
         {/* Heading */}
         <div className="flex items-center mb-6 sm:mb-8">
           <hr className="w-10 border-orange-500 border-2 mr-3" />
-          <h2 className="text-xl sm:text-2xl font-semibold">Contact Us</h2>
+          <h2 className="text-xl sm:text-2xl font-semibold text-orange-500">Contact Us</h2>
         </div>
 
         {/* Description */}
         <div className="mb-10 sm:mb-16 max-w-full md:max-w-5xl">
-          <h2 className="mb-5 font-medium text-[35px] leading-[100%] tracking-[0em]">
+          <h2 className="mb-5 font-medium sm:text-[35px] text-[20px] leading-[100%] tracking-[0em]">
   We'd love to hear from you! Get in touch with us today to discuss your construction needs.
 </h2>
 

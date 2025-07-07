@@ -99,3 +99,12 @@
   
 
 
+/* In your global CSS file (e.g., index.css or App.css) */
+html, body {
+  width: 100%;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+* {
+  box-sizing: border-box; /* Include padding/borders in element widths */
+}

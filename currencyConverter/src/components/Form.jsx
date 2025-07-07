@@ -26,34 +26,40 @@ const Form = () => {
         </div>
 
         <div className="w-full md:w-1/2 flex flex-col justify-between">
-          <div className="flex flex-col sm:flex-row justify-between mb-2 gap-4">
-            <label className="sm:w-[48%] text-gray-800 font-semibold text-sm sm:text-base">Name</label>
-            <label className="sm:w-[48%] text-gray-800 font-semibold text-sm sm:text-base">Email</label>
-          </div>
-          <div className="flex flex-col sm:flex-row justify-between mb-10 sm:mb-14 gap-4">
+          {/* Name Field - Mobile first approach */}
+          <div className="mb-4">
+            <label className="text-gray-800 font-semibold text-sm sm:text-base">Name</label>
             <input
               type="text"
               placeholder="Your Name"
-              className="w-full sm:w-[48%] border border-gray-400 rounded px-3 py-2 text-sm sm:text-base focus:outline-none"
-            />
-            <input
-              type="email"
-              placeholder="Your Email"
-              className="w-full sm:w-[48%] border border-gray-400 rounded px-3 py-2 text-sm sm:text-base focus:outline-none"
+              className="w-full border border-gray-400 rounded px-3 py-2 text-sm sm:text-base focus:outline-none mt-1"
             />
           </div>
 
-          <div className="flex flex-col sm:flex-row justify-between mb-2 gap-4">
-            <label className="sm:w-[48%] text-gray-800 font-semibold text-sm sm:text-base">Phone</label>
-            <label className="sm:w-[48%] text-gray-800 font-semibold text-sm sm:text-base">Select Services</label>
+          {/* Email Field */}
+          <div className="mb-4">
+            <label className="text-gray-800 font-semibold text-sm sm:text-base">Email</label>
+            <input
+              type="email"
+              placeholder="Your Email"
+              className="w-full border border-gray-400 rounded px-3 py-2 text-sm sm:text-base focus:outline-none mt-1"
+            />
           </div>
-          <div className="flex flex-col sm:flex-row justify-between mb-10 sm:mb-14 gap-4 relative">
+
+          {/* Phone Field */}
+          <div className="mb-4">
+            <label className="text-gray-800 font-semibold text-sm sm:text-base">Phone</label>
             <input
               type="tel"
               placeholder="Your Phone"
-              className="w-full sm:w-[48%] border border-gray-400 rounded px-3 py-2 text-sm sm:text-base focus:outline-none"
+              className="w-full border border-gray-400 rounded px-3 py-2 text-sm sm:text-base focus:outline-none mt-1"
             />
-            <div className="w-full sm:w-[48%] relative">
+          </div>
+
+          {/* Services Dropdown */}
+          <div className="mb-4">
+            <label className="text-gray-800 font-semibold text-sm sm:text-base">Select Services</label>
+            <div className="relative mt-1">
               <div
                 onClick={() => setDropdownOpen(!dropdownOpen)}
                 className="border border-gray-400 rounded px-3 py-2 cursor-pointer flex justify-between items-center text-sm sm:text-base"
@@ -80,11 +86,14 @@ const Form = () => {
             </div>
           </div>
 
-          <label className="text-gray-800 font-semibold mb-2 text-sm sm:text-base">Write Message</label>
-          <textarea
-            placeholder="Your message..."
-            className="w-full h-40 border border-gray-400 rounded px-3 py-2 focus:outline-none resize-none mb-8 sm:mb-10 text-sm sm:text-base"
-          ></textarea>
+          {/* Message Field */}
+          <div className="mb-4">
+            <label className="text-gray-800 font-semibold text-sm sm:text-base">Write Message</label>
+            <textarea
+              placeholder="Your message..."
+              className="w-full h-40 border border-gray-400 rounded px-3 py-2 focus:outline-none resize-none mt-1 text-sm sm:text-base"
+            ></textarea>
+          </div>
 
           <button className="w-full bg-black text-white py-3 text-sm sm:text-lg rounded hover:bg-orange-600 transition">
             Send Message

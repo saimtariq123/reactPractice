@@ -45,7 +45,7 @@ const ProjectsPage = () => {
   style={{ backgroundImage: 'url("/PICTURE-Banner-News-And-blog.png")' }}
 
 >
-  <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30">
+  <div className="absolute inset-0 flex items-center justify-center  bg-opacity-30">
     <h1 className="text-white text-[20px] sm:text-[48px] lg:text-[64px] font-bold">
       <span className="text-white">Our</span>{' '}
       <span className="text-orange-500">Projects</span>
