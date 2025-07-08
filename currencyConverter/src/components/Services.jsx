@@ -53,20 +53,20 @@ const Services = () => {
     <div className="w-full font-sans">
       {/* Banner */}
       <section className="relative">
-        <figure className="relative w-full sm:h-[370px] h-[270px]">
+        <figure className="relative w-full ">
           <img
             src="/Banner-Seviices-.png"
             alt="Services Banner"
-            className="w-full h-full object-cover"
+            className="w-full  object-cover"
           />
-          <div className="absolute inset-0  bg-gradient-to-r from-black/40 to-black/20 flex justify-center items-center">
+          <div className="absolute inset-0 lg:py-40 sm:py-32 py-20 bg-gradient-to-r from-black/40 to-black/20 flex justify-center items-center">
             <h1 className="text-5xl text-white font-bold">Services</h1>
           </div>
         </figure>
       </section>
 
       {/* Description */}
-      <section className="w-full px-6 max-w-screen-xl mx-auto pt-12 flex flex-col items-start">
+      <section className="w-full px-6 max-w-screen-xl mx-auto sm:pt-12 pt-30 flex flex-col items-start">
         <div className="flex items-center mb-6">
           <hr className="w-10 border-orange-500 border-2 mr-3" />
           <h2 className="text-2xl font-semibold text-orange-500">Services</h2>

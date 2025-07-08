@@ -32,12 +32,12 @@ const AboutUsSection = ({ showFullContent = true }) => {
       {/* Top Banner Section */}
       {showFullContent && (
         <section
-          className="w-full h-[300px] bg-cover bg-center flex items-center justify-center"
+          className="w-full  bg-cover bg-center flex items-center justify-center"
           style={{
             backgroundImage: "url('/PICTURE-Banner-News-And-blog.png')",
           }}
         >
-          <h1 className="text-white text-[32px] sm:text-[48px] lg:text-[64px] font-bold">
+          <h1 className="text-white text-[32px] sm:text-[48px] lg:text-[64px] font-bold sm:py-40 py-20">
             <span className="text-white">About</span>{' '}
             <span className="text-orange-500">Us</span>
           </h1>

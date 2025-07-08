@@ -40,18 +40,19 @@ const ProjectsPage = () => {
   return (
     <div className="w-full">
       {/* Top Banner */}
-     <div
-  className="relative w-full h-[200px] sm:h-[300px] lg:h-[400px] bg-center bg-cover flex items-center justify-center"
+    <section
+  className="relative w-full bg-center bg-cover flex items-center justify-center"
   style={{ backgroundImage: 'url("/PICTURE-Banner-News-And-blog.png")' }}
-
 >
-  <div className="absolute inset-0 flex items-center justify-center  bg-opacity-30">
+  <div className="absolute inset-0  bg-opacity-30" />
+  <div className="relative z-10 text-center py-20 sm:py-32 lg:py-40">
     <h1 className="text-white text-[20px] sm:text-[48px] lg:text-[64px] font-bold">
       <span className="text-white">Our</span>{' '}
       <span className="text-orange-500">Projects</span>
     </h1>
   </div>
-</div>
+</section>
+
 
 
       <div className="sm:w-[70%] w-[90%] mx-auto sm:py-12 py-5">
