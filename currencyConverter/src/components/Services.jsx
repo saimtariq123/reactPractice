@@ -2,6 +2,10 @@ import React from 'react'
 import ServiceCard from './ServiceCard'
 import { Form } from 'react-router-dom'
 import Form1 from './Form'
+import { motion } from 'framer-motion'
+import { useInView } from 'react-intersection-observer'
+
+
 
 const services = [
   {
@@ -49,24 +53,50 @@ const services = [
 ]
 
 const Services = () => {
+
+  const FadeInSection = ({ children }) => {
+    const [ref, inView] = useInView({ threshold: 0.2, triggerOnce: true })
+    return (
+    <motion.div
+    ref={ref}
+    initial={{ opacity: 0, y: -100, scale: 0.8 }}
+    animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
+    transition={{ duration: 1, ease: "easeOut" }}
+  >
+    {children}
+  </motion.div>
+  
+    )
+  }
   return (
     <div className="w-full font-sans">
+
+
       {/* Banner */}
-      <section className="relative">
-        <figure className="relative w-full ">
-          <img
-            src="/Banner-Seviices-.png"
-            alt="Services Banner"
-            className="w-full  object-cover"
-          />
-          <div className="absolute inset-0 lg:py-40 sm:py-32 py-20 bg-gradient-to-r from-black/40 to-black/20 flex justify-center items-center">
-            <h1 className="text-5xl text-white font-bold">Services</h1>
-          </div>
-        </figure>
-      </section>
+      <FadeInSection>
+    <section className="relative">
+  <figure className="relative w-full overflow-hidden">
+    {/* Use aspect ratio wrapper for the image */}
+    <div className="pt-[40%] sm:pt-[30%] lg:pt-[25%] relative"> {/* Adjust these percentages to control height */}
+      <img
+        src="/Banner-Seviices-.png"
+        alt="Services Banner"
+        className="absolute top-0 left-0 w-full h-full object-cover"
+      />
+    </div>
+    <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-black/20 flex justify-center items-center">
+      <div className="w-full text-center">
+        <h1 className="text-white text-[20px] sm:text-[48px] lg:text-[64px] font-bold py-8 sm:py-16 lg:py-24 px-4">Services</h1>
+      </div>
+    </div>
+  </figure>
+</section>
+      </FadeInSection>
+
 
       {/* Description */}
-      <section className="w-full px-6 max-w-screen-xl mx-auto sm:pt-12 pt-30 flex flex-col items-start">
+      <FadeInSection>
+      <section className="w-full px-6 max-w-screen-xl mx-auto sm:pt-12 pt-10 flex flex-col items-start">
         <div className="flex items-center mb-6">
           <hr className="w-10 border-orange-500 border-2 mr-3" />
           <h2 className="text-2xl font-semibold text-orange-500">Services</h2>
@@ -82,8 +112,10 @@ const Services = () => {
           </p>
         </div>
       </section>
+      </FadeInSection>
 
       {/* Cards */}
+      <FadeInSection>
      <section className="w-full max-w-screen-lg mx-auto px-6 py-12">
   <div className="grid grid-cols-1  lg:grid-cols-3 gap-12">
    {services.map((service, index) => (
@@ -98,7 +130,10 @@ const Services = () => {
 
   </div>
 </section>
+      </FadeInSection>
 
+
+<FadeInSection>
 <section
         className="w-full bg-cover bg-center flex items-center"
         style={{ backgroundImage: `url('Ready-to-build-together-banner-pic-home-pg 1.png')` }}
@@ -121,6 +156,10 @@ const Services = () => {
           </div>
         </div>
       </section>
+      </FadeInSection>
+
+      {/* Contact Section */}
+      <FadeInSection>
        <section className="w-full px-6 max-w-screen-xl mx-auto pt-12 flex flex-col items-start">
        <div className="flex items-center mb-6">
           <hr className="w-10 border-orange-500 border-2 mr-3" />
@@ -128,6 +167,9 @@ const Services = () => {
         </div>
         </section>
       <Form1/>
+      </FadeInSection>
+
+      {/* Form Section */}
     </div>
   )
 }

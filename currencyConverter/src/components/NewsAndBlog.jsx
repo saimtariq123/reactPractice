@@ -2,6 +2,23 @@
 
 import React, { useState } from 'react'
 import NewsAndBlogsCard from './NewsAndBlogsCard'
+import { motion } from 'framer-motion'
+import { useInView } from 'react-intersection-observer'
+
+const FadeInSection = ({ children }) => {
+    const [ref, inView] = useInView({ threshold: 0.2, triggerOnce: true })
+    return (
+    <motion.div
+    ref={ref}
+    initial={{ opacity: 0, y: -100, scale: 0.8 }}
+    animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
+    transition={{ duration: 1, ease: "easeOut" }}
+  >
+    {children}
+  </motion.div>
+  
+    )
+  }
 
 const articles = [
   {
@@ -46,16 +63,21 @@ const NewsAndBlogs = () => {
   return (
     <div className="w-full">
       {/* Top Banner */}
+      <FadeInSection>
       <div
-  className="relative w-full h-[200px] sm:h-[300px] lg:h-[400px] bg-center bg-cover flex items-center justify-center"
+  className="relative w-full  bg-center bg-cover flex items-center justify-center"
   style={{ backgroundImage: 'url("/PICTURE-Banner-News-And-blog.png")' }}
 >
+  <div className='sm:py-30 py-20 lg:py-40'>
   <h1 className="text-white text-[20px] sm:text-[48px] lg:text-[64px] font-bold">
     News <span className="text-orange-500">Blogs</span>
   </h1>
+  </div>
 </div>
+      </FadeInSection>
 
       {/* Content */}
+      <FadeInSection>
       <div className="sm:w-[70%] w-[90%] mx-auto sm:py-12 py-5">
         <div className="flex items-center sm:mb-4 mb-2">
           <hr className="w-10 border-orange-500 border-2 mr-3" />
@@ -115,6 +137,7 @@ const NewsAndBlogs = () => {
           ))}
         </div>
       </div>
+      </FadeInSection>
     </div>
   )
 }

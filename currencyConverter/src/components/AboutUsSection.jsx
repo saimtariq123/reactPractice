@@ -2,9 +2,25 @@ import React, { useState } from 'react'
 import '../App.css'
 import WhoWeAreAndFAQs from './WhoWeAreSection'
 import OurTeam from './OurTeam'
+import { motion } from "framer-motion"
+import { useInView } from "react-intersection-observer"
 
 const AboutUsSection = ({ showFullContent = true }) => {
   const [activeTab, setActiveTab] = useState('offer')
+ const FadeInSection = ({ children }) => {
+  const [ref, inView] = useInView({ threshold: 0.2, triggerOnce: true })
+  return (
+  <motion.div
+  ref={ref}
+  initial={{ opacity: 0, y: -300, scale: 0.8 }}
+  animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
+  transition={{ duration: 1, ease: "easeOut" }}
+>
+  {children}
+</motion.div>
+
+  )
+}
 
   const tabData = {
     offer: [
@@ -31,6 +47,7 @@ const AboutUsSection = ({ showFullContent = true }) => {
     <div className="w-full">
       {/* Top Banner Section */}
       {showFullContent && (
+         <FadeInSection>
         <section
           className="w-full  bg-cover bg-center flex items-center justify-center"
           style={{
@@ -42,9 +59,11 @@ const AboutUsSection = ({ showFullContent = true }) => {
             <span className="text-orange-500">Us</span>
           </h1>
         </section>
+        </FadeInSection>
       )}
 
       {/* Main Section */}
+      <FadeInSection>
       <section className="w-full bg-white pt-[80px] sm:pt-[100px]">
         {/* Upper About Section */}
         <div className="w-[80%] sm:w-[80%] mx-auto grid md:grid-cols-2 gap-12 md:gap-16 items-start">
@@ -92,73 +111,78 @@ const AboutUsSection = ({ showFullContent = true }) => {
         </div>
 
         {/* Lower Section */}
-        <div className="sm:pl-[13%] pl-0 relative w-full mt-[50px] sm:mt-[200px]">
-          <div className="sm:w-[80%] mx-auto relative">
-            {/* Left Image */}
-            <img
-              src="/Group 158.png"
-              alt="Overlay"
-              className="object-cover"
-            />
+          <div className="sm:pl-[13%] pl-0 relative w-full mt-[50px] sm:mt-[200px]">
+            <div className="sm:w-[80%] mx-auto relative">
+              {/* Left Image */}
+              <img
+                src="/Group 158.png"
+                alt="Overlay"
+                className="object-cover "
+              />
 
-            {/* Overlay Headings */}
-            <div className="absolute top-[171px] left-0 sm:left-0 space-y-6">
-              <h3 className="bg-orange-500 text-white text-xl sm:text-2xl font-bold px-4 py-2 w-fit">where</h3>
-              <h3 className="bg-orange-500 text-white text-xl sm:text-2xl font-bold px-4 py-2 w-fit">dreams</h3>
-              <h3 className="bg-orange-500 text-white text-xl sm:text-2xl font-bold px-4 py-2 w-fit">become true</h3>
-            </div>
-
-            {/* Right Tabbed Box */}
-            <div className="w-full">
-              {/* Desktop */}
-              <div className="hidden sm:block absolute top-[70px] left-[calc(536px-50px)] bg-white p-6 sm:p-8 shadow-lg w-full sm:w-[420px]">
-                <h2 className="text-2xl font-semibold mb-4">What We</h2>
-                <div className="flex gap-2 mb-4">
-                  {['offer', 'provide', 'guarantee'].map((key) => (
-                    <button
-                      key={key}
-                      className={`px-3 py-1 border ${activeTab === key ? 'bg-black text-white' : 'bg-white text-black'} transition`}
-                      onClick={() => setActiveTab(key)}
-                    >
-                      {key.charAt(0).toUpperCase() + key.slice(1)}
-                    </button>
-                  ))}
-                </div>
-                <ul className="list-disc text-gray-600 pl-5 space-y-2 text-sm sm:text-base">
-                  {tabData[activeTab].map((point, idx) => (
-                    <li key={idx}>{point}</li>
-                  ))}
-                </ul>
+              {/* Overlay Headings */}
+              <div className="absolute sm:top-[171px] top-[100px] sm:-left-30 space-y-6 flex flex-col sm:items-end">
+                <h3 className="bg-orange-500 text-white text-xl sm:text-2xl font-bold px-4 py-2 w-fit">where</h3>
+                <h3 className="bg-orange-500 text-white text-xl  sm:text-2xl font-bold px-4 py-2 w-fit">dreams</h3>
+                <h3 className="bg-orange-500 text-white text-xl sm:text-2xl font-bold px-4 py-2 w-fit">become true</h3>
               </div>
 
-              {/* Mobile */}
-              <div className="block sm:hidden mt-6 bg-white p-6 shadow-lg w-full">
-                <h2 className="text-2xl font-semibold mb-4">What We</h2>
-                <div className="flex gap-2 mb-4">
-                  {['offer', 'provide', 'guarantee'].map((key) => (
-                    <button
-                      key={key}
-                      className={`px-3 py-1 border ${activeTab === key ? 'bg-black text-white' : 'bg-white text-black'} transition`}
-                      onClick={() => setActiveTab(key)}
-                    >
-                      {key.charAt(0).toUpperCase() + key.slice(1)}
-                    </button>
-                  ))}
+              {/* Right Tabbed Box */}
+              <div className="w-full">
+                {/* Desktop */}
+                <div className="hidden sm:block absolute top-[70px] left-[calc(536px-50px)] bg-white p-6 sm:p-8 shadow-lg w-full sm:w-[420px]">
+                  <h2 className="text-2xl font-semibold mb-4">What We</h2>
+                  <div className="w-full sm:h-[3px] bg-black mt-4  " />
+                  <div className="flex gap-0 mb-4">
+                    
+                    {['offer', 'provide', 'guarantee'].map((key) => (
+                      <button
+                        key={key}
+                        className={`px-3 py-1  ${activeTab === key ? 'bg-black text-white' : 'bg-white text-black'} hover:bg-black hover:text-white text-bold text-2xl pr-[26px] hover:cursor-pointer transition`}
+                        onClick={() => setActiveTab(key)}
+                      >
+                        {key.charAt(0).toUpperCase() + key.slice(1)}
+                      </button>
+                    ))}
+                  </div>
+                  <ul className="list-disc text-gray-600 pl-5 space-y-2 text-sm sm:text-base">
+                    {tabData[activeTab].map((point, idx) => (
+                      <li key={idx}>{point}</li>
+                    ))}
+                  </ul>
                 </div>
-                <ul className="list-disc text-gray-600 pl-5 space-y-2 text-sm">
-                  {tabData[activeTab].map((point, idx) => (
-                    <li key={idx}>{point}</li>
-                  ))}
-                </ul>
+
+                {/* Mobile */}
+                <div className="block sm:hidden mt-6 bg-white p-6 shadow-lg w-full">
+                  <h2 className="text-2xl font-semibold mb-4">What We</h2>
+                  <div className="flex gap-2 mb-4">
+                    {['offer', 'provide', 'guarantee'].map((key) => (
+                      <button
+                        key={key}
+                        className={`px-3 py-1 border ${activeTab === key ? 'bg-black text-white' : 'bg-white text-black'} transition`}
+                        onClick={() => setActiveTab(key)}
+                      >
+                        {key.charAt(0).toUpperCase() + key.slice(1)}
+                      </button>
+                    ))}
+                  </div>
+                  <ul className="list-disc text-gray-600 pl-5 space-y-2 text-sm">
+                    {tabData[activeTab].map((point, idx) => (
+                      <li key={idx}>{point}</li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
-        </div>
         <br />
       </section>
+      </FadeInSection>
 
       {showFullContent && (
         <>
+        
+        <FadeInSection>
           <section
             className="w-full bg-cover bg-center flex items-center"
             style={{ backgroundImage: `url('Ready-to-build-together-banner-pic-home-pg 1.png')` }}
@@ -181,6 +205,7 @@ const AboutUsSection = ({ showFullContent = true }) => {
               </div>
             </div>
           </section>
+          </FadeInSection>
 
           <WhoWeAreAndFAQs />
           <OurTeam />

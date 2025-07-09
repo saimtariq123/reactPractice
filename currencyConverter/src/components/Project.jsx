@@ -2,8 +2,25 @@
 
 import React from 'react'
 import ProjectCard from './ProjectsCard'
+import { motion } from 'framer-motion'
+import { useInView } from 'react-intersection-observer'
 
 const ProjectsPage = () => {
+
+  const FadeInSection = ({ children }) => {
+    const [ref, inView] = useInView({ threshold: 0.2, triggerOnce: true })
+    return (
+    <motion.div
+    ref={ref}
+    initial={{ opacity: 0, y: -100, scale: 0.8 }}
+    animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
+    transition={{ duration: 1, ease: "easeOut" }}
+  >
+    {children}
+  </motion.div>
+  
+    )
+  }
   const projects = [
     {
       image: '/Image 3.png',
@@ -40,6 +57,7 @@ const ProjectsPage = () => {
   return (
     <div className="w-full">
       {/* Top Banner */}
+      <FadeInSection>
     <section
   className="relative w-full bg-center bg-cover flex items-center justify-center"
   style={{ backgroundImage: 'url("/PICTURE-Banner-News-And-blog.png")' }}
@@ -52,9 +70,11 @@ const ProjectsPage = () => {
     </h1>
   </div>
 </section>
+      </FadeInSection>
 
 
-
+      {/* Projects Section */}
+      <FadeInSection>
       <div className="sm:w-[70%] w-[90%] mx-auto sm:py-12 py-5">
         <div className="flex items-center sm:mb-4 mb-2">
           <hr className="w-10 border-orange-500 border-2 mr-3" />
@@ -83,6 +103,7 @@ const ProjectsPage = () => {
           ))}
         </div>
       </div>
+      </FadeInSection>
     </div>
   )
 }

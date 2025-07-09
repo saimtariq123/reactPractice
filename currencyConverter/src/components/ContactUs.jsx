@@ -2,32 +2,50 @@ import React, { useState } from 'react'
 import { FaChevronDown } from 'react-icons/fa'
 import Footer from './Footer'
 import Form1 from './Form'
+import { motion } from 'framer-motion'
+import { useInView } from 'react-intersection-observer'
 
 const ContactUs = () => {
   const [selectedService, setSelectedService] = useState('')
   const [dropdownOpen, setDropdownOpen] = useState(false)
+
+  const FadeInSection = ({ children }) => {
+    const [ref, inView] = useInView({ threshold: 0.2, triggerOnce: true })
+    return (
+    <motion.div
+    ref={ref}
+    initial={{ opacity: 0, y: -100, scale: 0.8 }}
+    animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
+    transition={{ duration: 1, ease: "easeOut" }}
+  >
+    {children}
+  </motion.div>
+  
+    )
+  }
 
   const services = ['Consulting', 'Development', 'Design']
 
   return (
     <div className="w-full font-sans">
       {/* Top Banner */}
-      <section className="relative">
-        <figure className="relative w-full h-[250px] sm:h-[370px]">
-          <img
-            src="/Banner-Contact-Us.png"
-            alt="Contact Banner"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-black/20 flex justify-center items-center">
-            <h1 className="text-3xl sm:text-5xl text-white font-bold">
-              Contact <span className="text-orange-500">Us</span>
-            </h1>
-          </div>
-        </figure>
-      </section>
+      <FadeInSection>
+      <section
+     
+  className="relative w-full  bg-center bg-cover flex items-center justify-center"
+  style={{ backgroundImage: 'url("/PICTURE-Banner-News-And-blog.png")' }}
+>
+  <div className='sm:py-30 py-20 lg:py-40'>
+  <h1 className="text-white text-[20px] sm:text-[48px] lg:text-[64px] font-bold">
+    Contact <span className="text-orange-500">Us</span>
+  </h1>
+  </div>
+
+</section>
+      </FadeInSection>
 
       {/* Content Section */}
+      <FadeInSection>
       <section className=" px-4 sm:px-8  sm:w-[80%] w-[90%] md:w-[] lg:w-[] xl:w- mx-auto py-8 sm:py-12 flex flex-col items-start">
         {/* Heading */}
         <div className="flex items-center mb-6 sm:mb-8">
@@ -50,8 +68,10 @@ const ContactUs = () => {
         {/* Form Section */}
         <Form1/>
       </section>
+      </FadeInSection>
 
       {/* Black Background Section */}
+      <FadeInSection>
       <section className="w-full bg-black text-white">
         <div className="px-4 sm:px-8 max-w-screen-xl mx-auto h-auto md:h-[400px] flex flex-col md:flex-row py-8 sm:py-12 items-start justify-between">
           {/* Left Side Text */}
@@ -84,8 +104,11 @@ const ContactUs = () => {
           </div>
         </div>
       </section>
+      </FadeInSection>
+
+      {/* Footer */}
 <div className="w-full h-px bg-white/20"></div> 
-      <Footer />
+     
     </div>
   )
 }

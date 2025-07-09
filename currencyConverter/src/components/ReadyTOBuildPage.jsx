@@ -1,8 +1,23 @@
 import React, { useState } from 'react'
+import { motion } from "framer-motion"
+import { useInView } from "react-intersection-observer"
 
 const ReadyToBuildPage = () => {
   const [slideIndex, setSlideIndex] = useState(0)
-
+  const FadeInSection = ({ children }) => {
+    const [ref, inView] = useInView({ threshold: 0.2, triggerOnce: true })
+    return (
+    <motion.div
+    ref={ref}
+    initial={{ opacity: 0, y: -300, scale: 0.8 }}
+    animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
+    transition={{ duration: 1, ease: "easeOut" }}
+  >
+    {children}
+  </motion.div>
+  
+    )
+  }
   const testimonials = [
     [
       {
@@ -41,6 +56,7 @@ const ReadyToBuildPage = () => {
   return (
     <div className="w-full">
       {/* Hero Section */}
+      <FadeInSection>
       <section
         className="w-full bg-cover bg-center flex items-center"
         style={{ backgroundImage: `url('Ready-to-build-together-banner-pic-home-pg 1.png')` }}
@@ -63,6 +79,9 @@ const ReadyToBuildPage = () => {
           </div>
         </div>
       </section>
+      </FadeInSection>
+
+      <FadeInSection>
 
       {/* Testimonials */}
       <section className="py-[40px] px-4 sm:px-8 lg:px-0 w-full max-w-6xl mx-auto text-center">
@@ -125,33 +144,49 @@ const ReadyToBuildPage = () => {
           </button>
         </div>
       </section>
+      </FadeInSection>
+
+      <FadeInSection>
 
       {/* Companies Section */}
-      <section className="bg-black py-16 w-full">
-        <div className="w-[90%] mx-auto text-white">
-          <div className="flex items-center mb-4">
-            <hr className="w-10 border-orange-500 border-2 mr-3" />
-            <h2 className="text-xl sm:text-2xl font-semibold text-orange-500">Companies We Worked With</h2>
-          </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6 mt-10 justify-items-center">
-            {[
-              'logoipsum-244 1.png',
-              'logoipsum-242 1.png',
-              'logoipsum-264 1.png',
-              'logoipsum-244 1.png',
-              'logoipsum-242 1.png',
-              'logoipsum-264 1.png',
-            ].map((logo, idx) => (
-              <img
-                key={idx}
-                src={logo}
-                alt={`Company Logo ${idx + 1}`}
-                className=" logo object-contain"
-              />
-            ))}
-          </div>
-        </div>
-      </section>
+    <section className="bg-black py-16 w-full overflow-hidden">
+  <div className="w-[90%] mx-auto text-white">
+    <div className="flex items-center mb-4">
+      <hr className="w-10 border-orange-500 border-2 mr-3" />
+      <h2 className="text-xl sm:text-2xl font-semibold text-orange-500">Companies We Worked With</h2>
+    </div>
+    <div className="relative w-full overflow-hidden mt-10">
+      <div className="flex w-max animate-marquee gap-20">
+        {[
+          'logoipsum-244 1.png',
+          'logoipsum-242 1.png',
+          'logoipsum-264 1.png',
+          'logoipsum-244 1.png',
+          'logoipsum-242 1.png',
+          'logoipsum-264 1.png',
+        ]
+          .concat([
+            'logoipsum-244 1.png',
+            'logoipsum-242 1.png',
+            'logoipsum-264 1.png',
+            'logoipsum-244 1.png',
+            'logoipsum-242 1.png',
+            'logoipsum-264 1.png',
+          ])
+          .map((logo, idx) => (
+            <img
+              key={idx}
+              src={logo}
+              alt={`Company Logo ${idx + 1}`}
+              className="h-8 sm:h-16 md:h-20 w-[150px] object-contain flex-shrink-2"
+            />
+          ))}
+      </div>
+    </div>
+  </div>
+</section>
+</FadeInSection>
+
     </div>
   )
 }
