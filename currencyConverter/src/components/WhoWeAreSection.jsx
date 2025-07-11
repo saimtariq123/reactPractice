@@ -1,30 +1,29 @@
 import React, { useState, useEffect } from 'react'
 import { useInView } from 'react-intersection-observer'
-import { useSpring, useMotionValue, motion } from 'framer-motion'
+import { motion } from 'framer-motion'
 
-const AnimatedNumber = ({ target }) => {
+const AnimatedNumber = ({ target, start }) => {
   const [count, setCount] = useState(0)
 
   useEffect(() => {
-    const end = parseInt(target)
-    if (isNaN(end)) return
+    if (!start) return
+    const num = parseInt(target.replace(/\D/g, ''))
+    const duration = 2000
+    const startTime = Date.now()
 
-    let start = 0
-    const duration = 200
-    const stepTime = Math.max(Math.floor(duration / end), 20)
+    const update = () => {
+      const now = Date.now()
+      const progress = Math.min((now - startTime) / duration, 1)
+      const value = Math.floor(progress * num)
+      setCount(value)
+      if (progress < 1) requestAnimationFrame(update)
+    }
 
-    const timer = setInterval(() => {
-      start += 1
-      setCount(start)
-      if (start >= end) clearInterval(timer)
-    }, stepTime)
-
-    return () => clearInterval(timer)
-  }, [target])
+    update()
+  }, [target, start])
 
   return <span>{count}</span>
 }
-
 
 const FadeInSection = ({ children }) => {
   const [ref, inView] = useInView({ threshold: 0.2, triggerOnce: true })
@@ -42,10 +41,7 @@ const FadeInSection = ({ children }) => {
 
 const WhoWeAreAndFAQs = () => {
   const [openIndex, setOpenIndex] = useState(null)
-
-  const toggleFAQ = (index) => {
-    setOpenIndex(openIndex === index ? null : index)
-  }
+  const [statsRef, statsInView] = useInView({ threshold: 0.2, triggerOnce: true })
 
   const stats = [
     { number: '250+', label: 'Completed Projects' },
@@ -81,7 +77,7 @@ const WhoWeAreAndFAQs = () => {
     <section className="w-full px-6 sm:py-[100px] py-[50px]">
       <div className="sm:w-[80%] w-[95%] mx-auto">
         <FadeInSection>
-          <div className="mb-20">
+          <div className="mb-20" ref={statsRef}>
             <div className="flex items-center mb-4">
               <hr className="w-10 border-orange-500 border-2 mr-3" />
               <h2 className="text-2xl font-semibold text-orange-500">Who We Are</h2>
@@ -101,7 +97,7 @@ const WhoWeAreAndFAQs = () => {
                   className="bg-[#1414141A] flex flex-col justify-center items-center text-center pt-4 sm:px-0 px-4"
                 >
                   <div className="text-[28px] font-bold text-black mb-2">
-                    <AnimatedNumber target={parseInt(stat.number.replace(/\D/g, ''))} />+
+                    <AnimatedNumber target={stat.number} start={statsInView} />+
                   </div>
                   <div className="text-[16px] font-medium text-black">{stat.label}</div>
                   <div className="w-full sm:h-[3px] bg-black mt-4" />
@@ -124,7 +120,7 @@ const WhoWeAreAndFAQs = () => {
               {faqs.map((faq, idx) => (
                 <div key={idx} className="mb-4 border-b border-gray-300 pb-4">
                   <button
-                    onClick={() => toggleFAQ(idx)}
+                    onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
                     className="w-full text-left flex justify-between items-center text-[12px] sm:text-[18px] font-medium"
                   >
                     {faq.question}

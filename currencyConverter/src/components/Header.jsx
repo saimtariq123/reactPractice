@@ -15,7 +15,7 @@ const Header = () => {
   const location = useLocation()
 
   const [navItems, setNavItems] = useState([
-    { name: 'Home', url: '/', active: false },
+    { name: 'Home', url: '/', active: true },
     { name: 'About Us', url: '/about', active: false },
     { name: 'Projects', url: '/projects', active: false },
     { name: 'Services', url: '/services', active: false },

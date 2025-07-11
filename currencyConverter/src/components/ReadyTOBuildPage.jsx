@@ -9,7 +9,7 @@ const ReadyToBuildPage = () => {
     return (
     <motion.div
     ref={ref}
-    initial={{ opacity: 0, y: -300, scale: 0.8 }}
+    initial={{ opacity: 0, y: -100, scale: 0.8 }}
     animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
     transition={{ duration: 1, ease: "easeOut" }}
   >
@@ -81,7 +81,7 @@ const ReadyToBuildPage = () => {
       </section>
       </FadeInSection>
 
-      <FadeInSection>
+     
 
       {/* Testimonials */}
       <section className="py-[40px] px-4 sm:px-8 lg:px-0 w-full max-w-6xl mx-auto text-center">
@@ -144,9 +144,9 @@ const ReadyToBuildPage = () => {
           </button>
         </div>
       </section>
-      </FadeInSection>
+      
 
-      <FadeInSection>
+      
 
       {/* Companies Section */}
     <section className="bg-black py-16 w-full overflow-hidden">
@@ -185,7 +185,7 @@ const ReadyToBuildPage = () => {
     </div>
   </div>
 </section>
-</FadeInSection>
+
 
     </div>
   )
